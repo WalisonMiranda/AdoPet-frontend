@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   margin-top: 60px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     width: auto;
     flex-direction: column;
     align-items: center;
@@ -31,7 +31,7 @@ Container.Aside = styled.aside`
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     position: relative;
     height: 300px;
     background-color: var(--background);
@@ -41,7 +41,7 @@ Container.Aside = styled.aside`
 Container.Panel = styled.div`
   height: 300px;
   width: 271px;
-  margin: 40px auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--blue);
@@ -74,15 +74,16 @@ Container.Panel = styled.div`
         margin: auto auto 0;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 820px) {
         background-color: var(--light-blue);
       }
     }
 
     .selected {
       background-color: var(--light-blue);
+      box-shadow: 0 0 0 1px var(--blue);
       
-      @media (max-width: 640px) {
+      @media (max-width: 820px) {
         background-color: var(--white);
       }
     }
@@ -101,9 +102,15 @@ Container.Panel = styled.div`
       }
 
       select {
-        height: 30px;
+        height: 40px;
         font-size: 1rem;
         padding: 0.25rem;
+        border-radius: 8px;
+      }
+    
+    @media (max-width: 820px) {
+      select {
+        border: 1px solid var(--blue);
       }
     }
   }

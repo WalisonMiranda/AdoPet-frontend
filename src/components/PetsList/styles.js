@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 export const ResultList = styled.main`
   position: relative;
-  min-height: 827px;
+  min-height: 820px;
   height: auto;
   width: 100%;
   max-width: calc(100% - 320px);
-  margin: 40px 80px 40px 360px;
-  padding: 1rem;
+  margin: 40px 80px 20px 360px;
+  padding: 40px 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   border: 1px solid var(--blue);
+  gap: 4rem;
   border-radius: 8px;
 
   .list-title {
@@ -23,25 +24,22 @@ export const ResultList = styled.main`
     background: var(--background);
   }
 
-  p {
+  p:last-child {
+    margin: 40px auto;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     line-height: 1.4rem;
-  }
-
-  @media (max-width: 860px) {
-    margin-right: 20px;
   }
 
   @media (min-width: 641px) {
     margin-left: 340px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     min-height: 360px;
     max-width: 90%;
     width: 90%;
-    margin: 120px auto;
+    margin: 120px auto 40px;
 
     .list-title {
       top: -11px;

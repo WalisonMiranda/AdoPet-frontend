@@ -1,23 +1,36 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { useAuth } from '../../hooks/useAuth';
+import history from '../../services/history';
+import * as actions from '../../store/modules/auth/actions';
 
 import { Nav } from './styles';
 
 export const Header = () => {
-  const { user, handleSignOut } = useAuth();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { nome } = useSelector((state) => state.auth.user);
 
-  return (
-    <Nav>
-      <ul>
-        <NavLink className={({isActive}) =>(isActive ? "link active" : "link inactive")} to="/home">HOME</NavLink>
-        <span></span>
-        <NavLink className={({isActive}) =>(isActive ? "link active" : "link inactive")} to="/meus-pets">MEUS PETS</NavLink>
-      </ul>
-      <div>
-        <span onClick={() => console.log('toggle on/off')}></span>
-        <button onClick={handleSignOut}>Sair</button>
-      </div>
-    </Nav>
-  )
+  const handleSignOut = () => {
+    dispatch(actions.loginFailure());
+    history.push('/login');
+  }
+
+  const Navbar = () => {
+    return (
+      <Nav>
+        <ul>
+          <NavLink className="link" activeClassName='active' exact to="/">HOME</NavLink>
+          <span></span>
+          <NavLink className="link" activeClassName='active' exact to="/meus-pets">MEUS PETS</NavLink>
+        </ul>
+        <div>
+          <p>Bem vindo(a) {nome.split(' ')[0]}</p>
+          <button onClick={handleSignOut}>Sair</button>
+        </div>
+      </Nav>
+    )
+  }
+
+  return isLoggedIn && <Navbar />    
 }

@@ -1,49 +1,41 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { PetRegisterForm } from '../../components/PetRegisterForm';
 import { PetsList } from '../../components/PetsList';
 
 import { Catdog } from '../../assets/images';
-
-import { supabase } from '../../services/supabase';
-
 import { Container } from './styles';
 
+import axios from '../../services/axios';
+import history from '../../services/history';
+
 export function MyPets() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   const [userPets, setUserPets] = useState([]);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  }
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  }
-
-  useEffect(() => {    
-    const user = supabase.auth.user();
-
-    supabase.from('pets')
-      .select('*')
-      .eq('usuario_id', user.id)
-      .then(({ data }) => {
-        setUserPets(data);
+  useEffect(() => {
+    async function getUserPets() {
+      await axios.get(`/pets/user/${user.id}`)
+      .then(response => {
+        setUserPets(response.data);
       });
+    }
 
-      console.log('updated')
-  }, [isOpen]);
+    getUserPets()
+  }, []);
 
   return (
     <Container>
-      {isOpen && <PetRegisterForm onClick={handleCloseModal} />}
       <Container.Aside>
         <img src={Catdog} alt="logo" />
         <div>
-          <button onClick={handleOpenModal}>Cadastrar novo Pet</button>
+          <button onClick={() => history.push('/pet')}>Cadastrar novo Pet</button>
         </div>
       </Container.Aside>
-      <PetsList pets={userPets} userPets={true} />
+      <PetsList
+        pets={userPets}
+      />
     </Container>
   )
 }

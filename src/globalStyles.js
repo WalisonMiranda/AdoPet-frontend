@@ -16,6 +16,8 @@ export default createGlobalStyle`
     --white: #fff;
     --black: #000;
     --gray: #C4C4C4;
+    --success: #80ed99;
+    --warning: #F2AF29;
   }
 
   @media(max-width: 1080px) {
@@ -29,15 +31,28 @@ export default createGlobalStyle`
         font-size: 87.5%;
     }
   }
-
+  
   body {
     height: 100%;
     width: 100%;
     background: var(--background);
     color: var(--text);
+    position: relative;
   }
 
   a {
     text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  body .Toastify .Toastify__toast-container .Toastify__toast--success {
+    background: var(--success);
+  }
+
+  body .Toastify .Toastify__toast-container .Toastify__toast--error {
+    background: var(--warning);
   }
 `;

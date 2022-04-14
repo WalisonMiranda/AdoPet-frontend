@@ -2,15 +2,17 @@ import { PetCard } from '../index';
 
 import { ResultList } from './styles';
 
-export const PetsList = ({ pets, userPets }) => {
-
+export const PetsList = ({ pets }) => {
   return (
     <ResultList>
         <p className="list-title">Pets</p>
           {pets.length > 0 ?
             pets.map((pet) => {
               return (
-                <PetCard key={pet.id} pet={pet} userPets={userPets} />
+                <PetCard 
+                  key={pet.id} 
+                  pet={pet}
+                />
                 )
               })
             : 

@@ -2,21 +2,13 @@ import styled from 'styled-components';
 
 const Container = styled.main`
   position: relative;
+  height: 100%;
   margin-top: 60px;
   display: flex;
-
   font-family: 'Roboto', sans-serif;
   background-color: var(--background);
-  
-  > div {
-    height: 500px;
-    width: 320px;
-    border: 1px solid red;
-    margin: auto;
-  }
 
-  @media (max-width: 640px) {
-    width: auto;
+  @media (max-width: 820px) {
     flex-direction: column;
     align-items: center;
   }
@@ -30,8 +22,13 @@ Container.Aside = styled.aside`
   flex-direction: column;
   background-color: var(--light-blue);
 
-  > img {
+  img {
     margin: 1rem auto 0;
+
+    @media (max-width: 640px) {
+      height: 100px;
+      width: auto;
+    }
   }
 
   div {
@@ -53,12 +50,12 @@ Container.Aside = styled.aside`
         background: var(--blue);
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 820px) {
         background: var(--blue);
 
         :hover {
           background: var(--background);
-          border: 1px solid var(--blue);
+          box-shadow: 0 0 1px 1px var(--blue);
         }
       }
     }
@@ -76,12 +73,11 @@ Container.Aside = styled.aside`
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     position: relative;
-    height: 300px;
+    height: auto;
     background-color: var(--background);
   }
 `;
-
 
 export { Container }

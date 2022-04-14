@@ -26,46 +26,56 @@ const Nav = styled.header`
       font-family: 'Ubunto', sans-serif;
       list-style: none;
       cursor: pointer;
-      
-    }
-    .active {
-      color: var(--blue);
-
-      @media (max-width: 640px) {
-        color: var(--white);
-      }
-    }
-    
-    .inactive {
       color: var(--text);
     }
 
+    .active {
+      color: var(--blue);
+
+      @media (max-width: 820px) {
+        color: var(--white);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .link {
+        font-size: 1rem;
+      }
+    }
   }
 
   div {
     margin-right: 30px;
     display: flex;
     gap: 16px;
-
-    span {
-      height: 30px;
-      width: 30px;
-      color: red;
-      border: 1px solid var(--text);
-      border-radius: 50%;
-      cursor: pointer;
-
+    
+    p {
+      font-size: 1.2rem;
+      font-family: 'Ubunto', sans-serif;
+      margin-right: 2rem;
     }
 
     button {
       background: none;
       border: none;
       cursor: pointer;
+      margin-right: 2rem;
+      font-size: 1.2rem;
     }
-    
+
+    @media (max-width: 980px) {
+      p {
+        display: none;
+      }
+
+      button {
+        margin-right: 1rem;
+        font-size: 1.1rem;
+      }
+    }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     background: var(--light-blue);
   }
 `;

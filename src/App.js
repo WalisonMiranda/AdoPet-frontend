@@ -1,41 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Outlet } from 'react-router';
+import { Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { ToastContainer } from "react-toastify";
 
-import { ContextProvider } from './context/authContext';
+import store, { persistor } from "./store";
 
-import { LoginPage, Home, MyPets, PetProfile } from './pages';
-import { Header } from './components';
+import { Header } from "./components";
+import { Routes } from "./routes";
+import history from "./services/history";
 
-import GlobalStyle from './globalStyles.js';
-
-const WithNavbar = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  )
-}
-
-const WithoutNavbar = () => <Outlet />;
+import GlobalStyle from "./globalStyles.js";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ContextProvider>
-          <Routes>
-            <Route element={<WithoutNavbar />}>
-              <Route path="/" element={<LoginPage />} />
-            </Route>
-            <Route element={<WithNavbar />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/meus-pets" element={<MyPets />} />
-              <Route path="pet/:id" element={<PetProfile />} />
-            </Route>
-          </Routes>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          <Header />
+          <Routes />
+          <ToastContainer autoClose={3000} className="toast-container" />
           <GlobalStyle />
-      </ContextProvider>
-    </BrowserRouter>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 

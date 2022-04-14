@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { Dog, Cat, Catdog } from '../../assets/images';
 
-import { supabase } from '../../services/supabase'
-import { PetsList } from '../../components/PetsList';
+import { PetsList } from '../../components';
+
+import axios from '../../services/axios';
 
 export function Home() {
   const [pets, setPets] = useState([]);
@@ -20,58 +21,24 @@ export function Home() {
   };
 
   useEffect(() => {    
-    const fetchPets = async () => {
-      const { data } = await supabase.from('pets')
-      .select('*')
-      .then(data => {
-        return data;
-      });
+    async function getFilteredData() {
+      const response = await axios.get('/pets');
 
-      setPets(data);
+      if (petType !== '') {
+        if (petGender !== '') {
+          setPets(response.data.filter(pet => pet.tipo === petType && pet.sexo === petGender));
+        } else {
+          setPets(response.data.filter(pet => pet.tipo === petType));
+        }
+      } else {
+        if (petGender !== '') {
+          setPets(response.data.filter(pet => pet.sexo === petGender));
+        } else {
+          setPets(response.data);
+        }
+      }
     }
-    
-    fetchPets();
-  }, []);
-
-  useEffect(() => {
-    switch (petType) {
-      case 'Cachorro':
-        supabase.from('pets')
-        .select('*')
-        .eq('tipo', petType)
-        .then(({data}) => {
-          setPets(data);
-          console.log(data);
-        });
-
-        break;
-
-      case 'Gato':
-        supabase.from('pets')
-        .select('*')
-        .eq('tipo', petType)
-        .then(({data}) => {
-          setPets(data);
-          console.log(data);
-        });
-
-        break;
-    
-      case '':
-        supabase.from('pets')
-        .select('*')
-        .then(({data}) => {
-          setPets(data);
-        });
-
-        break;
-
-      default:
-      break;
-    }
-
-    console.log('updated');
-    console.log(petGender)
+    getFilteredData()
   }, [petType, petGender]);
 
   return (
@@ -99,8 +66,8 @@ export function Home() {
               <label>Sexo</label>
               <select onChange={(e) => setPetGender(e.target.value)}>
                 <option value="">todos</option>
-                <option value="macho">macho</option>
-                <option value="femea">fêmea</option>
+                <option value="Macho">macho</option>
+                <option value="Femea">fêmea</option>
               </select>
           </div>
         </Container.Panel>
