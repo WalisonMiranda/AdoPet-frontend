@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Container, PetInfo, PhotosGrid } from './styles';
+import { Container, PetInfo, PhotosGrid, PhotoCard } from './styles';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -16,11 +16,16 @@ export function PetProfile() {
   const { id } = useParams();
 
   const [pet, setPet] = useState({});
+  const [petPhotos, setPetPhotos] = useState([]);
   const [imageLoading, setImageLoading] = useState(true);
 
   const handleDeletePet = async id => {
     await axios.delete(`/pets/${id}`);
     history.push('/meus-pets');
+  }
+
+  const handleOpenPhoto = (id) => {
+    console.log(id);
   }
 
   const handleDeleteConfirm = () => {
@@ -36,12 +41,14 @@ export function PetProfile() {
       await axios.get(`/pets/${id}`)
       .then(response => {
         setPet(response.data);
+        setPetPhotos(response.data.Fotos);
       });
     }
 
+
     setTimeout(() => {
       setImageLoading(false);
-    }, 100);
+    }, 300);
 
     getPetData();
   },[]);
@@ -50,7 +57,7 @@ export function PetProfile() {
     <Container>
       <p onClick={() => history.goBack()}>Voltar<img src={Back} alt="voltar" /></p>
       <PetInfo>
-        {/* <img src={imageLoading ? '' : pet.Fotos[0].foto_url} alt={pet.nome} /> */}
+        <img src={imageLoading ? '' : pet.Fotos[pet.Fotos.length - 1].foto_url} alt={pet.nome} />
         <div className="info">
         {user.id === pet.user_id && 
             <div>
@@ -73,6 +80,15 @@ export function PetProfile() {
       </PetInfo>
       <PhotosGrid>
         <p className="photos-title">Fotos</p>
+        {
+          petPhotos.map((photo, index) => {
+            return (
+              <PhotoCard key={index} onClick={() => handleOpenPhoto(index)}>
+                <img src={imageLoading ? '' : photo.foto_url} alt={photo.filename} />
+              </PhotoCard>
+            )
+          })
+        }
       </PhotosGrid>
     </Container>
   )

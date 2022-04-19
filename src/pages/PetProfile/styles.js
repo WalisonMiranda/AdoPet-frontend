@@ -36,15 +36,16 @@ export const PetInfo = styled.div`
 
   img {
     height: auto;
+    max-height: 280px;
     min-width: 120px;
     width: auto;
-    max-width: 200px;
+    max-width: 360px;
     border-radius: 8px;
   }
 
   .info {
     width: 100%;
-    max-width: 620px;
+    max-width: 720px;
     padding: 1rem;
     border: 1px solid var(--light-blue);
     border-radius: 8px;
@@ -52,7 +53,7 @@ export const PetInfo = styled.div`
     div {
       display: flex;
       justify-content: flex-end;
-      gap: 16px;
+      gap: 24px;
 
       svg {
         font-size: 1.75rem;
@@ -66,15 +67,22 @@ export const PetInfo = styled.div`
       }
     }
   }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 export const PhotosGrid = styled.div`
   position: relative;
   height: 100%;
-  min-height: 400px;
+  min-height: 620px;
   width: 90%;
   margin: 40px auto;
-
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) ) ;
+  grid-gap: 2rem;
   border: 1px solid var(--light-blue);
   border-radius: 8px;
 
@@ -89,4 +97,21 @@ export const PhotosGrid = styled.div`
     background: var(--background);
   }
 
+`;
+
+export const PhotoCard = styled.div`
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  transition: ease .1s;
+
+  :hover{
+    opacity: .8;
+    padding: .1rem;
+  }
+
+  img {
+    height: auto;
+    width: 100%;
+  }
 `;
