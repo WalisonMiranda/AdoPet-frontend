@@ -171,15 +171,26 @@ export function PetRegister({ match }) {
             />
           </label>
 
-          <label htmlFor="foto">
-            Fotos*
+          <label htmlFor="foto" className="photo-input">
+            Foto*
             <input
+              style={{ display: 'none' }}
               name="foto"
+              id="foto"
               required
               type="file"
-              accept="image/x-png,image/jpeg"
+              accept="image/png, image/jpeg"
               onChange={(e) => handleFileChange(e)}
             />
+            {/* <Fab
+              color="var(--blue)"
+              size="medium"
+              component="span"
+              // aria-label="add"
+              variant="extended"
+            >
+              Foto*
+            </Fab> */}
           </label>
 
           <div className="buttons">

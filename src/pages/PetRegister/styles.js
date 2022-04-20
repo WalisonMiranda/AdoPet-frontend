@@ -70,6 +70,31 @@ export const Container = styled.main`
       }
     }
 
+    .photo-input {
+      height: 50px;
+      width: 120px;
+      margin-inline: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px dashed var(--blue);
+      border-radius: 8px;
+      background: #eee;
+      cursor: pointer;
+      transition: ease .3s;
+      
+      :hover {
+        background: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      input {
+        height: 100%;
+        width: 100%;
+        display: none;
+      }
+    }
+
     .buttons {
       width: 100%;
       margin: 0 auto 20px;
