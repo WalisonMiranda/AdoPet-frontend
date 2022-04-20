@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 export const ResultList = styled.main`
   position: relative;
-  min-height: 820px;
   height: auto;
   width: 100%;
   max-width: calc(100% - 320px);
   margin: 40px 80px 20px 360px;
-  padding: 40px 1rem;
+  padding: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   border: 1px solid var(--blue);
   gap: 4rem;
   border-radius: 8px;

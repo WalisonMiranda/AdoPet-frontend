@@ -75,13 +75,13 @@ export const PetInfo = styled.div`
 
 export const PhotosGrid = styled.div`
   position: relative;
-  height: 100%;
   min-height: 620px;
+  height: 100%;
   width: 90%;
   margin: 40px auto;
   padding: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) ) ;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
   border: 1px solid var(--light-blue);
   border-radius: 8px;
@@ -102,6 +102,7 @@ export const PhotosGrid = styled.div`
 export const PhotoCard = styled.div`
   height: auto;
   width: auto;
+  max-width: 280px;
   cursor: pointer;
   transition: ease .1s;
 

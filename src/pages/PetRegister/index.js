@@ -177,7 +177,7 @@ export function PetRegister({ match }) {
               name="foto"
               required
               type="file"
-              accept="image/*"
+              accept="image/x-png,image/jpeg"
               onChange={(e) => handleFileChange(e)}
             />
           </label>
