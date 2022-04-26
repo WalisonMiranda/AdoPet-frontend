@@ -97,24 +97,19 @@ export function PetProfile() {
               </div>
             )}
             <p>
-              <strong>Nome: </strong>
-              {pet.nome}
+              Nome: <strong>{pet.nome}</strong>
             </p>
             <p>
-              <strong>Sexo: </strong>
-              {pet.sexo}
+              Sexo: <strong>{pet.sexo}</strong>
             </p>
             <p>
-              <strong>Idade: </strong>
-              {pet.idade}
+              Idade: <strong>{pet.idade}</strong>
             </p>
             <p>
-              <strong>Raça: </strong>
-              {pet.raca}
+              Raça: <strong> {pet.raca}</strong>
             </p>
             <p>
-              <strong>Contato: </strong>
-              {pet.contato}
+              Contato: <strong>{pet.contato}</strong>
             </p>
           </div>
         </PetInfo>

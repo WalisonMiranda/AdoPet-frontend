@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isEmail } from 'validator';
-import { toast } from 'react-toastify';
 
 import * as actions from '../../store/modules/auth/actions';
 
@@ -13,6 +12,9 @@ export function Register() {
   const dispatch = useDispatch();
 
   const [signUp, setSignUp] = useState({ nome: '', email: '', password: '' });
+  const [nameError, setNameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
   const handleSignUp = async e => {
     e.preventDefault();
@@ -23,17 +25,17 @@ export function Register() {
   
     if (nome.length < 3 || nome.length > 120) {
       formErrors = true;
-      toast.error('Nome deve ter entre 3 e 120 caracteres');
+      setNameError('Nome deve ter entre 3 e 120 caracteres');
     }
   
     if (!isEmail(email)) {
       formErrors = true;
-      toast.error('E-mail inválido.');
+      setEmailError('Email inválido');
     }
   
     if (password.length < 6 || password.length > 50) {
       formErrors = true;
-      toast.error('Senha deve ter entre 6 e 50 caracteres');
+      setPasswordError('Senha deve ter entre 6 e 50 caracteres');
     }
   
     if (formErrors) return;
@@ -62,6 +64,7 @@ export function Register() {
               value={signUp.nome}
               onChange={(e) => setSignUp({ ...signUp, nome: e.target.value })}
             />
+            {nameError && <span className='error'>{nameError}</span>}
 
             <label htmlFor="email">E-mail</label>
             <input
@@ -71,6 +74,7 @@ export function Register() {
               value={signUp.email}
               onChange={(e) => setSignUp({ ...signUp, email: e.target.value })}
             />
+            {emailError && <span className='error'>{emailError}</span>}
 
             <label htmlFor="password">Senha</label>
             <input
@@ -80,6 +84,7 @@ export function Register() {
               value={signUp.password}
               onChange={(e) => setSignUp({ ...signUp, password: e.target.value })}
             />
+            {passwordError && <span className='error'>{passwordError}</span>}
 
             <button type="submit">Registrar</button>
           </form>

@@ -85,7 +85,7 @@ const Container = styled.div`
     aside {
       min-height: 350px;
       height: 100%;
-      max-height: 450px;
+      max-height: 500px;
       width: 340px;
       margin: auto 16px 16px;
       border: 1px solid var(--blue);
@@ -103,7 +103,7 @@ const Container = styled.div`
         p {
           font-size: 2rem;
           font-weight: 500;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
         }
 
         label {
@@ -134,6 +134,11 @@ const Container = styled.div`
           :hover {
             filter: brightness(0.9);
           }
+        }
+
+        .error {
+          color: red;
+          padding-top: .25rem;
         }
       }
 

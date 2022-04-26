@@ -1,6 +1,5 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 import { get } from 'lodash';
-import { toast } from 'react-toastify';
 
 import * as actions from './actions';
 import * as types from '../types';
@@ -16,7 +15,7 @@ function* loginRequest({ payload }) {
 
     history.push('/');
   } catch (err) {
-    toast.error('Usuário ou senha inválidos.');
+    console.error('Usuário ou senha inválidos.');
     yield put(actions.loginFailure());
   }
 }
@@ -31,7 +30,7 @@ function* registerRequest({ payload }) {
         password,
       });
       yield put(actions.registerCreatedSuccess({ nome, email, password }));
-      toast.success('Conta criada com sucesso!');
+      console.success('Conta criada com sucesso!');
             
       history.push('/login');
   } catch (err) {
@@ -44,9 +43,9 @@ function* registerRequest({ payload }) {
     }
 
     if (errors.length > 0) {
-      errors.map((error) => toast.error(error));
+      errors.map((error) => console.error(error));
     } else {
-      toast.error('Erro desconhecido');
+      console.error('Erro desconhecido');
     }
 
     yield put(actions.registerFailure());

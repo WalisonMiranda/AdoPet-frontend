@@ -182,15 +182,6 @@ export function PetRegister({ match }) {
               accept="image/png, image/jpeg"
               onChange={(e) => handleFileChange(e)}
             />
-            {/* <Fab
-              color="var(--blue)"
-              size="medium"
-              component="span"
-              // aria-label="add"
-              variant="extended"
-            >
-              Foto*
-            </Fab> */}
           </label>
 
           <div className="buttons">

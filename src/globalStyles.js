@@ -47,12 +47,4 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-
-  body .Toastify .Toastify__toast-container .Toastify__toast--success {
-    background: var(--success);
-  }
-
-  body .Toastify .Toastify__toast-container .Toastify__toast--error {
-    background: var(--warning);
-  }
 `;
